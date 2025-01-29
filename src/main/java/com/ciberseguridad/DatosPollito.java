@@ -13,6 +13,9 @@ public class DatosPollito {
             "apollo"
     };
 
+    public static final String[] ALFABETO = {"a","b","c","d","e","f","g","h","i","j","k","l",
+            "m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+
     public static final String[] CLAVES_EXPUESTAS = {
             "aece0490200448f4688c1bbd878d1e07e5a7c6f647a67d059abaf197dbf9f9d3",
             "f8ab5bf5d9187614017da5dfead24f7283782aa831f9680c238792cbe824adac",
