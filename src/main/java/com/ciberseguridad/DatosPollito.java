@@ -2,43 +2,9 @@ package com.ciberseguridad;
 
 public class DatosPollito {
 
-    public static final String[] PALABRAS_COMUNES = {
-            "pollito",
-            "papas",
-            "pollitoconpapas",
-            "kfc",
-            "chicken",
-            "pollo",
-            "pollocampero",
-            "apollo"
-    };
 
     public static final String[] ALFABETO = {"a","b","c","d","e","f","g","h","i","j","k","l",
             "m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-
-    public static final String[] CLAVES_EXPUESTAS = {
-            "aece0490200448f4688c1bbd878d1e07e5a7c6f647a67d059abaf197dbf9f9d3",
-            "f8ab5bf5d9187614017da5dfead24f7283782aa831f9680c238792cbe824adac",
-            "cf005d65cae63741a161ea39a0dde501603b0d3aa3537823e771f6abb0c3020e",
-            "6fc3f73ceb1e92694e5d34b787fdcabf28e6ccbd8c92ee23d52dacc81c4f426c",
-            "242099b12ff7d6624d65504e034c1f5e6d0196f8b1f046a0528950d4714819d5",
-            "abe12f2b9cbda7d73e4c7de7bf3962ec1ff99f32ab430b745aaa80fcc47ad306",
-            "9434421d88b59b062eaeb44c2cac827687cb2ad2043fd58fda9683823e2edba5",
-            "7ffdd62dc0daceeb776d8c0a13a3e5c1a02a5afa4ee89b940ad5100f3a3959f2",
-            "4664df306e1bda3b53e9ee26e46ef2b4f9ed343df8b400d84c5887b06691af73",
-            "a5b025c7f2719577d32a56c0d45843ebbc3cbfc73c297b2fb5802f9f8adc8368",
-            "84283ab2fd72d4cb5096bd06bd8bf8c07ddd92711f24418ff58fa0a5387f4b01",
-            "ed43fc8b304778e75c7058c9a0797fabbb1dbab6b02f1ef7d675b8d10da9c84a",
-            "0c9bf4d2f9572bdf6cc99f09db00c355715fbb678065d0ccd47d802170d691db",
-            "e109effe2a19f064daa7e7b72f0aebf3f5d8d5ac245c817bce96f2c5de5dae28",
-            "9ca807042f651ebf99f0ce1188748d5da25f71d3bbc10f99214035b4fcbf04ae",
-            "1256940be2390fb92c6cb55f3f4e4575c56fcd436998e2022c7a928dbe37c989",
-            "1f4a58a2bb3315f2574545c361efe069a80249f475f3c93da6ed0cc12b6c4847",
-            "74e81fb84bb5ccda37f14915107ac36aef9289d35488286133b6543831322493",
-            "00d6dff2944ba9767a7190fa2ad07eb9a066a34a1edf4fa10bd7e909495b986c",
-            "467a2a646ced89536cfd78329f40554876e92ca668a2ea370faa5cb21e54e932",
-            "39573bc2ed12a1ef2607ae350b2be599675fdde9a37c1f07983a3f648dae76af"
-    };
 
     public static final String[] ROCKYOU_3000 = {
             "123456", "12345", "123456789", "password", "iloveyou", "princess", "1234567", "rockyou",
