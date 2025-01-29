@@ -1,4 +1,7 @@
+package com.ciberseguridad;
+
 public class DatosPollito {
+
     public static final String[] PALABRAS_COMUNES = {
             "pollito",
             "papas",
