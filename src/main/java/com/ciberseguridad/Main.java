@@ -50,16 +50,38 @@ public class Main {
 
                     break;
                 case 2:
-                    System.out.println("Ingrese la palabra: ");
-                    String palabras = sc.nextLine();
 
-                    System.out.println("Ingrese la clave: ");
-                    int claves= sc.nextInt();
+                    System.out.println("tiene la clave para descifrar");
+                    System.out.println("1. Si");
+                    System.out.println("2. No");
+
+                    int option = sc.nextInt();
                     sc.nextLine();
 
-                    String result = descifradoCesar(palabras,claves);
-                    System.out.println("palabra decifrada: " + result);
-                    break;
+
+
+                    if (option == 1){
+                        System.out.println("Ingrese la palabra: ");
+                        String palabras = sc.nextLine();
+
+                        System.out.println("Ingrese la clave: ");
+                        int claves= sc.nextInt();
+                        sc.nextLine();
+
+                        String result = descifradoCesar(palabras,claves);
+                        System.out.println("palabra decifrada: " + result);
+                        break;
+
+                    } else {
+                        System.out.println("Ingrese la palabra: ");
+                        String palabras = sc.nextLine();
+
+                        DescifradoCesarSinClave(palabras);
+                        break;
+
+                    }
+
+
                 case 3:
                     cifradoVigenere();
                     break;
@@ -123,6 +145,18 @@ public class Main {
         }
 
         return resultado.toString();
+    }
+
+    public static void DescifradoCesarSinClave(String palabra){
+        palabra = palabra.toLowerCase();
+
+        System.out.println("Probando todas las claves posibles para el descifrado:");
+
+        for (int clave = 1; clave <= 26; clave++) {
+            String resultado = descifradoCesar(palabra, clave);
+            System.out.println("Clave " + clave + ": " + resultado);
+        }
+
     }
 
     private static void cifradoVigenere() {
