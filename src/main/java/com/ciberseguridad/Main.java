@@ -41,7 +41,15 @@ public class Main {
                 System.out.println("Palabra cifrada: " + resultado);
                 break;
             case 2:
-                descifradoCesar();
+                Scanner scra = new Scanner(System.in);
+                System.out.println("Ingrese la palabra: ");
+                String palabras = scra.nextLine();
+
+                System.out.println("Ingrese la clave: ");
+                int claves= scra.nextInt();
+
+                String result = descifradoCesar(palabras,claves);
+                System.out.println("palabra decifrada: " + result);
                 break;
             case 3:
                 cifradoVigenere();
@@ -81,13 +89,36 @@ public class Main {
         return resultado.toString();
     }
 
-    private static void descifradoCesar() {
-    }
+    public static String descifradoCesar(String palabra, int clave) {
+        palabra = palabra.toLowerCase();
+        char[] arrPalabra = palabra.toCharArray();
+        ArrayList<Character> descifrada = new ArrayList<>();
+        for (char letra : arrPalabra) {
+
+            if (letra >= 'a' && letra <= 'z') {
+                int posicionActual = letra - 'a';
+                int nuevaPosicion = (posicionActual - clave) % 26;
+                if (nuevaPosicion < 0) {
+                    nuevaPosicion += 26;
+                }
+                descifrada.add(alf[nuevaPosicion]);
+            } else {
+                descifrada.add(letra);
+            }
+        }
 
     public static void cifradoVigenere(){
         System.out.println("Ingrese una palabra o frase: ");
         String palabra = sc.nextLine();
         System.out.println(palabra);
+
+
+        StringBuilder resultado = new StringBuilder(descifrada.size());
+        for (Character ch : descifrada) {
+            resultado.append(ch);
+        }
+
+        return resultado.toString();
     }
 
     private static void descifradoVigenere() {
