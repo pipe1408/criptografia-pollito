@@ -2,8 +2,7 @@ package com.ciberseguridad;
 
 public class DatosPollito {
 
-    public static final String[] ALFABETO = {"a","b","c","d","e","f","g","h","i","j","k","l",
-            "m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+    public static final char[] ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
     public static final String[] ROCKYOU_3000 = {
             "123456", "12345", "123456789", "password", "iloveyou", "princess", "1234567", "rockyou",

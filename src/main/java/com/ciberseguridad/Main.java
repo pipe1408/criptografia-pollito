@@ -1,5 +1,6 @@
 package com.ciberseguridad;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -7,9 +8,9 @@ public class Main {
     static char[] alf = {'a','b','c','d','e','f','g','h','i','j','k','l'
             ,'m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
 
+    public static void main(String[] args) {
         String menuText = """
                 Bienvenido al programa de criptografía Pollitoconpapas
                 
@@ -25,13 +26,19 @@ public class Main {
                 """;
         System.out.println(menuText);
         int opc = sc.nextInt();
+        sc.nextLine();
 
         switch (opc) {
             case 1:
+                System.out.println("Ingrese la palabra: ");
                 String palabra = sc.nextLine();
+
                 System.out.println("Ingrese la clave: ");
                 int clave= sc.nextInt();
+
                 cifradoCesar(palabra,clave);
+                String resultado = cifradoCesar(palabra, clave);
+                System.out.println("Palabra cifrada: " + resultado);
                 break;
             case 2:
                 descifradoCesar();
@@ -47,24 +54,40 @@ public class Main {
         }
     }
 
-    public static void cifradoCesar(String palabra, int clave){
+    public static String cifradoCesar(String palabra, int clave){
         palabra = palabra.toLowerCase();
         char[] arrPalabra = palabra.toCharArray();
-        char[] descifrada = new char[0];
-        for(int i = 0; i < palabra.length(); i++){
-            for(int j = i + 1; j <= i; j++) {
-                if (arrPalabra[i] == alf[j]){
-                    descifrada[i] = alf[j + clave];
+        ArrayList<Character> cifrada = new ArrayList<>();
+
+        for (char letra : arrPalabra) {
+
+            if (letra >= 'a' && letra <= 'z') {
+                int posicionActual = letra - 'a';
+                int nuevaPosicion = (posicionActual + clave) % 26;
+                if (nuevaPosicion < 0) {
+                    nuevaPosicion += 26;
                 }
+                cifrada.add(alf[nuevaPosicion]);
+            } else {
+                cifrada.add(letra);
             }
         }
-        System.out.println(descifrada);
+
+        StringBuilder resultado = new StringBuilder(cifrada.size());
+        for (Character ch : cifrada) {
+            resultado.append(ch);
+        }
+
+        return resultado.toString();
     }
 
     private static void descifradoCesar() {
     }
 
     public static void cifradoVigenere(){
+        System.out.println("Ingrese una palabra o frase: ");
+        String palabra = sc.nextLine();
+        System.out.println(palabra);
     }
 
     private static void descifradoVigenere() {
