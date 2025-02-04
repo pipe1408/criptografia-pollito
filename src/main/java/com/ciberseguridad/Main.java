@@ -24,11 +24,12 @@ public class Main {
         switch (menu){
             case 1:
 
+                Scanner scr = new Scanner(System.in);
                 System.out.println("Ingrese la palabra: ");
-                String palabra = sc.nextLine();
+                String palabra = scr.nextLine();
 
                 System.out.println("Ingrese la clave: ");
-                int clave= sc.nextInt();
+                int clave= scr.nextInt();
 
                 CifradoCesar(palabra,clave);
 
@@ -38,6 +39,15 @@ public class Main {
                 break;
             case 2:
 
+                Scanner scra = new Scanner(System.in);
+                System.out.println("Ingrese la palabra: ");
+                String palabras = scra.nextLine();
+
+                System.out.println("Ingrese la clave: ");
+                int claves= scra.nextInt();
+
+                String result = DescifrarCesar(palabras,claves);
+                System.out.println("palabra decifrada: " + result);
                 break;
         }
 
@@ -75,10 +85,31 @@ public class Main {
         return resultado.toString();
     }
 
-    public static void DescifradoCesar(String palabra, String clave){
+    public static String DescifrarCesar(String palabra, int clave) {
+        palabra = palabra.toLowerCase();
+        char[] arrPalabra = palabra.toCharArray();
+        ArrayList<Character> descifrada = new ArrayList<>();
+        for (char letra : arrPalabra) {
+
+            if (letra >= 'a' && letra <= 'z') {
+                int posicionActual = letra - 'a';
+                int nuevaPosicion = (posicionActual - clave) % 26;
+                if (nuevaPosicion < 0) {
+                    nuevaPosicion += 26;
+                }
+                descifrada.add(alf[nuevaPosicion]);
+            } else {
+                descifrada.add(letra);
+            }
+        }
 
 
+        StringBuilder resultado = new StringBuilder(descifrada.size());
+        for (Character ch : descifrada) {
+            resultado.append(ch);
+        }
 
+        return resultado.toString();
     }
 
     public static void CifradoVigenere(String palabra, String clave ){
