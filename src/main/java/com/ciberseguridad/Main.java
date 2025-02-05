@@ -1,7 +1,6 @@
 package com.ciberseguridad;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -13,6 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         String menuText = """
+                
                 Bienvenido al programa de criptografía Pollitoconpapas
                 
                 ======================
@@ -76,7 +76,7 @@ public class Main {
                         System.out.println("Ingrese la palabra: ");
                         String palabras = sc.nextLine();
 
-                        DescifradoCesarSinClave(palabras);
+                        descifradoCesarSinClave(palabras);
                         break;
 
                     }
@@ -147,7 +147,7 @@ public class Main {
         return resultado.toString();
     }
 
-    public static void DescifradoCesarSinClave(String palabra){
+    public static void descifradoCesarSinClave(String palabra){
         palabra = palabra.toLowerCase();
 
         System.out.println("Probando todas las claves posibles para el descifrado:");
@@ -156,11 +156,12 @@ public class Main {
             String resultado = descifradoCesar(palabra, clave);
             System.out.println("Clave " + clave + ": " + resultado);
         }
-
     }
 
     private static void cifradoVigenere() {
         char[] alfabeto = DatosPollito.ALFABETO;
+        int alfabetoLength = alfabeto.length;
+
         System.out.println("Ingrese el mensaje que desea cifrar:");
         char[] mensaje = sc.nextLine().toUpperCase().toCharArray();
         System.out.println("Ingrese la clave para cifrar: ");
@@ -168,15 +169,108 @@ public class Main {
 
         int[] claveArray = new int[claveTexto.length];
         for (int i = 0; i < claveTexto.length; i++) {
-            for (int j = 0; j < alfabeto.length; j++) {
+            for (int j = 0; j < alfabetoLength; j++) {
                 if (claveTexto[i] == alfabeto[j]) {
                     claveArray[i] = j;
+                    break;
                 }
             }
         }
-        System.out.println(Arrays.toString(claveArray));
+
+        char[] mensajeCifrado = new char[mensaje.length];
+        int posicionClave = 0;
+        for (int i = 0; i < mensaje.length; i++) {
+            char letra = mensaje[i];
+
+            int posicionMensaje = -1;
+            for (int j = 0; j < alfabetoLength; j++) {
+                if (letra == alfabeto[j]) {
+                    posicionMensaje = j;
+                    break;
+                }
+            }
+
+            if (posicionMensaje != -1) {
+                int nuevaPosicion = (posicionMensaje + claveArray[posicionClave]) % alfabetoLength;
+                mensajeCifrado[i] = alfabeto[nuevaPosicion];
+                posicionClave = (posicionClave + 1) % claveArray.length;
+            } else {
+                mensajeCifrado[i] = letra;
+            }
+        }
+        System.out.println("Mensaje cifrado: " + new String(mensajeCifrado));
     }
 
-    private static void descifradoVigenere () {
+
+    private static void descifradoVigenere() {
+        char[] alfabeto = DatosPollito.ALFABETO;
+
+        System.out.println("Ingrese el mensaje cifrado:");
+        char[] mensajeCifrado = sc.nextLine().toUpperCase().toCharArray();
+
+        System.out.println("""
+                
+                ¿Tiene la clave para descifrar?
+                1. Si
+                2. No
+                
+                """);
+        int opc = sc.nextInt();
+        sc.nextLine();
+
+        if (opc == 1) {
+            System.out.println("Ingrese la clave:");
+            char[] claveTexto = sc.nextLine().toUpperCase().toCharArray();
+            descifrarConClave(mensajeCifrado, claveTexto, alfabeto);
+        } else if (opc == 2) {
+            System.out.println("Intentando descifrar con las primeras 100 claves de ROCKYOU_3000...");
+            for (int i = 0; i < 100; i++) {
+                char[] claveTexto = DatosPollito.ROCKYOU_3000[i].toUpperCase().toCharArray();
+                System.out.println("\nIntentando clave: " + DatosPollito.ROCKYOU_3000[i]);
+                descifrarConClave(mensajeCifrado, claveTexto, alfabeto);
+            }
+        } else {
+            System.out.println("Opcion invalida");
+        }
+    }
+
+    private static void descifrarConClave(char[] mensajeCifrado, char[] claveTexto, char[] alfabeto) {
+        int alfabetoLength = alfabeto.length;
+        int claveLength = claveTexto.length;
+
+        int[] claveArray = new int[claveLength];
+        for (int i = 0; i < claveLength; i++) {
+            for (int j = 0; j < alfabetoLength; j++) {
+                if (claveTexto[i] == alfabeto[j]) {
+                    claveArray[i] = j;
+                    break;
+                }
+            }
+        }
+
+        char[] mensajeDescifrado = new char[mensajeCifrado.length];
+        int posicionClave = 0;
+
+        for (int i = 0; i < mensajeCifrado.length; i++) {
+            char letra = mensajeCifrado[i];
+
+            int posicionMensaje = -1;
+            for (int j = 0; j < alfabetoLength; j++) {
+                if (letra == alfabeto[j]) {
+                    posicionMensaje = j;
+                    break;
+                }
+            }
+
+            if (posicionMensaje != -1) {
+                int nuevaPosicion = (posicionMensaje - claveArray[posicionClave] + alfabetoLength) % alfabetoLength;
+                mensajeDescifrado[i] = alfabeto[nuevaPosicion];
+                posicionClave = (posicionClave + 1) % claveArray.length;
+            } else {
+                mensajeDescifrado[i] = letra;
+            }
+        }
+
+        System.out.println("Resultado: " + new String(mensajeDescifrado));
     }
 }
